@@ -8,7 +8,10 @@ const sectionImages = {
   "Lines 26–35": "/images/latin3.png",
   "Lines 36–50": "/images/latin4.png",
   "Lines 50–63": "/images/latin5.png",
-  "Lines 64–76": "/images/latin6.png",
+  "Lines 64–end": "/images/latin6.png",
+  "Catullus 50 Lines 1–10": "/images/catullus50-1-10.png",
+  "Catullus 50 Lines 11–21": "/images/catullus50-11-21.png",
+  "Catullus 13 Lines 1–14": "/images/catullus13-1-14.png",
 };
 
 function levenshtein(a, b) {
@@ -43,6 +46,7 @@ export default function App() {
   const [feedback, setFeedback] = useState("");
   const [mistakes, setMistakes] = useState(0);
   const [showFinishedPopup, setShowFinishedPopup] = useState(false);
+  const [showNotes, setShowNotes] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -184,9 +188,11 @@ export default function App() {
           </h2>
 
           {[
-            { title: "Baucis and Philemon", start: 0, end: 6, remove: "" },
-            { title: "Messalina", start: 6, end: sections.length, remove: "Messalina " }
-          ].map((group, groupIdx) => (
+  { title: "Baucis and Philemon", start: 0, end: 6, remove: "" },
+  { title: "Messalina", start: 6, end: 15, remove: "Messalina " },
+  { title: "Avunculus Meus", start: 15, end: 17, remove: "Avunculus Meus " },
+  { title: "Catullus poems", start: 17, end: sections.length, remove: "Catullus " }
+].map((group, groupIdx) => (
             <div key={groupIdx} style={{ marginBottom: "40px" }}>
               <h3 style={{ fontWeight: "500", fontSize: "24px", marginBottom: "15px", textAlign: "center" }}>
                 {group.title}
@@ -360,50 +366,56 @@ export default function App() {
             </button>
           </div>
 
-          <h2>Latin:</h2>
-          {practiceAll && sectionImages[sections[selectedSectionIdx].label] ? (
-            <img
-              src={sectionImages[sections[selectedSectionIdx].label]}
-              alt="Latin passage"
-              style={{
-                width: "100%",
-                margin: "0 auto",
-                display: "block",
-                maxWidth: "800px",
-                borderRadius: "10px",
-              }}
-            />
-          ) : (
-            <div
-              style={{
+          <div style={{ display: "flex", gap: "20px", alignItems: "start" }}>
+            <div style={{ flex: 1 }}>
+              <h2>Latin:</h2>
+              {practiceAll && sectionImages[sections[selectedSectionIdx].label] ? (
+                <img
+                  src={sectionImages[sections[selectedSectionIdx].label]}
+                  alt="Latin passage"
+                  style={{
+                    width: "100%",
+                    margin: "0 auto",
+                    display: "block",
+                    maxWidth: "800px",
+                    borderRadius: "10px",
+                  }}
+                />
+              ) : (
+                <div
+                  style={{
+                    background: "#f9f9f9",
+                    padding: "15px",
+                    borderRadius: "8px",
+                    fontSize: "20px",
+                    whiteSpace: "pre-wrap",
+                    wordWrap: "break-word",
+                    marginBottom: "20px",
+                    fontFamily: "serif",
+                    textAlign: "center",
+                    lineHeight: "1.8"
+                  }}
+                  dangerouslySetInnerHTML={{ __html: formatLatin() }}
+                />
+              )}
+            </div>
+
+            <div style={{ flex: 1 }}>
+              <h2>Your Translation:</h2>
+              <pre style={{
                 background: "#f9f9f9",
                 padding: "15px",
-                borderRadius: "8px",
-                fontSize: "20px",
+                minHeight: "100px",
                 whiteSpace: "pre-wrap",
                 wordWrap: "break-word",
-                marginBottom: "20px",
-                fontFamily: "serif",
-                textAlign: "center",
-                lineHeight: "1.8"
-              }}
-              dangerouslySetInnerHTML={{ __html: formatLatin() }}
-            />
-          )}
-
-          <h2>Your Translation:</h2>
-          <pre style={{
-            background: "#f9f9f9",
-            padding: "15px",
-            minHeight: "100px",
-            whiteSpace: "pre-wrap",
-            wordWrap: "break-word",
-            borderRadius: "8px",
-            fontSize: "16px",
-            fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
-          }}>
-            {userWords.join(" ")}
-          </pre>
+                borderRadius: "8px",
+                fontSize: "16px",
+                fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
+              }}>
+                {userWords.join(" ")}
+              </pre>
+            </div>
+          </div>
 
           <input
             ref={inputRef}
@@ -462,6 +474,43 @@ export default function App() {
           <p style={{ textAlign: "center", marginTop: "8px", fontSize: "14px" }}>
             {progress}% complete
           </p>
+          {sections[selectedSectionIdx].styleNotes && (
+            <div style={{ marginTop: "20px", textAlign: "center" }}>
+              <button
+                onClick={() => setShowNotes((prev) => !prev)}
+                style={{
+                  padding: "10px 16px",
+                  backgroundColor: "#d9f0ff",
+                  border: "1px solid #90caf9",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                  fontSize: "14px"
+                }}
+              >
+                {showNotes ? "Hide Style Notes" : "Show Style Notes"}
+              </button>
+            </div>
+          )}
+          
+          {showNotes && sections[selectedSectionIdx].styleNotes && (
+            <div style={{
+              backgroundColor: "#f0f8ff",
+              padding: "20px",
+              borderRadius: "8px",
+              marginTop: "20px",
+              fontSize: "15px",
+              lineHeight: "1.6"
+            }}>
+              <h3 style={{ textAlign: "center", marginBottom: "15px" }}>📜 Style Notes:</h3>
+              <ul>
+                {sections[selectedSectionIdx].styleNotes.map((note, idx) => (
+                  <li key={idx} style={{ marginBottom: "10px" }}>
+                    <strong>{note.quote}</strong>: {note.technique}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {showFinishedPopup && (
             <div style={{
