@@ -51,40 +51,40 @@ export default function App() {
       .toLowerCase()
       .trim();
 
-      const handleTyping = (e) => {
-        const value = e.target.value;
-        setCurrentWord(value);
-      
-        if (selectedSectionIdx === null) return;
-      
-        let targetText;
-      
-        if (practiceAll) {
-          targetText = sections[selectedSectionIdx].fullEnglish.join(" ");
-        } else {
-          targetText = sections[selectedSectionIdx].groups[selectedLineIdx].english;
-        }
-      
-        if (value.endsWith(" ")) {
-          const targetWords = targetText.trim().split(/\s+/);
-          const typed = normalize(value.trim());
-          const correctWord = normalize(targetWords[userWords.length] || "");
-      
-          if (typed === correctWord || levenshtein(typed, correctWord) <= 1) {
-            setUserWords((prev) => [...prev, targetWords[userWords.length]]);
-            setCurrentWord("");
-            setFeedback("Correct");
-          } else {
-            setFeedback(`Try again — the correct word was "${targetWords[userWords.length]}"`);
-            setMistakes((prev) => prev + 1);
-            setCurrentWord("");
-          }
-      
-          if (inputRef.current) {
-            inputRef.current.focus();
-          }
-        }
-      };
+  const handleTyping = (e) => {
+    const value = e.target.value;
+    setCurrentWord(value);
+  
+    if (selectedSectionIdx === null) return;
+  
+    let targetText;
+  
+    if (practiceAll) {
+      targetText = sections[selectedSectionIdx].fullEnglish.join(" ");
+    } else {
+      targetText = sections[selectedSectionIdx].groups[selectedLineIdx].english;
+    }
+  
+    if (value.endsWith(" ")) {
+      const targetWords = targetText.trim().split(/\s+/);
+      const typed = normalize(value.trim());
+      const correctWord = normalize(targetWords[userWords.length] || "");
+  
+      if (typed === correctWord || levenshtein(typed, correctWord) <= 1) {
+        setUserWords((prev) => [...prev, targetWords[userWords.length]]);
+        setCurrentWord("");
+        setFeedback("Correct");
+      } else {
+        setFeedback(`Try again — the correct word was "${targetWords[userWords.length]}"`);
+        setMistakes((prev) => prev + 1);
+        setCurrentWord("");
+      }
+  
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }
+  };
 
   const handleHint = () => {
     if (selectedSectionIdx === null) return;
@@ -165,49 +165,49 @@ export default function App() {
       lineHeight: "1.6"
     }}>
       {selectedSectionIdx === null && (
-  <div>
-    <h2 style={{ fontWeight: "600", fontSize: "28px", marginBottom: "20px", textAlign: "center" }}>
-      Choose a Set Text
-    </h2>
+        <div>
+          <h2 style={{ fontWeight: "600", fontSize: "28px", marginBottom: "20px", textAlign: "center" }}>
+            Choose a Set Text
+          </h2>
 
-    {[
-      { title: "Baucis and Philemon", start: 0, end: 6, remove: "" },
-      { title: "Messalina", start: 6, end: sections.length, remove: "Messalina " }
-    ].map((group, groupIdx) => (
-      <div key={groupIdx} style={{ marginBottom: "40px" }}>
-        <h3 style={{ fontWeight: "500", fontSize: "24px", marginBottom: "15px", textAlign: "center" }}>
-          {group.title}
-        </h3>
-        <div style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "10px",
-          justifyContent: "center",
-          marginBottom: "30px"
-        }}>
-          {sections.slice(group.start, group.end).map((section, idx) => (
-            <button
-              key={group.start + idx}
-              onClick={() => setSelectedSectionIdx(group.start + idx)}
-              style={{
-                padding: "12px 20px",
-                backgroundColor: "#f0f0f0",
-                border: "1px solid #ccc",
-                borderRadius: "6px",
-                cursor: "pointer",
-                fontSize: "16px",
-                minWidth: "150px",
-                textAlign: "center"
-              }}
-            >
-              {section.label.replace(group.remove, "")}
-            </button>
+          {[
+            { title: "Baucis and Philemon", start: 0, end: 6, remove: "" },
+            { title: "Messalina", start: 6, end: sections.length, remove: "Messalina " }
+          ].map((group, groupIdx) => (
+            <div key={groupIdx} style={{ marginBottom: "40px" }}>
+              <h3 style={{ fontWeight: "500", fontSize: "24px", marginBottom: "15px", textAlign: "center" }}>
+                {group.title}
+              </h3>
+              <div style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "10px",
+                justifyContent: "center",
+                marginBottom: "30px"
+              }}>
+                {sections.slice(group.start, group.end).map((section, idx) => (
+                  <button
+                    key={group.start + idx}
+                    onClick={() => setSelectedSectionIdx(group.start + idx)}
+                    style={{
+                      padding: "12px 20px",
+                      backgroundColor: "#f0f0f0",
+                      border: "1px solid #ccc",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      fontSize: "16px",
+                      minWidth: "150px",
+                      textAlign: "center"
+                    }}
+                  >
+                    {section.label.replace(group.remove, "")}
+                  </button>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
-      </div>
-    ))}
-  </div>
-)}
+      )}
 
       {selectedSectionIdx !== null && selectedLineIdx === null && !practiceAll && (
         <div>
@@ -221,6 +221,29 @@ export default function App() {
             justifyContent: "center",
             marginBottom: "30px"
           }}>
+            <button
+              onClick={() => {
+                const randomIdx = Math.floor(Math.random() * sections[selectedSectionIdx].groups.length);
+                setSelectedLineIdx(randomIdx);
+                setUserWords([]);
+                setCurrentWord("");
+                setFeedback("");
+                setMistakes(0);
+              }}
+              style={{
+                padding: "12px 20px",
+                backgroundColor: "#d0e0ff",
+                border: "1px solid #8ba6d9",
+                borderRadius: "6px",
+                cursor: "pointer",
+                fontSize: "16px",
+                minWidth: "150px",
+                textAlign: "center"
+              }}
+            >
+              Random Practice Set
+            </button>
+
             <button
               onClick={() => {
                 setPracticeAll(true);
@@ -244,29 +267,29 @@ export default function App() {
             </button>
 
             {sections[selectedSectionIdx].groups.map((_, idx) => (
-  <button
-    key={idx}
-    onClick={() => {
-      setSelectedLineIdx(idx);
-      setUserWords([]);
-      setCurrentWord("");
-      setFeedback("");
-      setMistakes(0);
-    }}
-    style={{
-      padding: "12px 20px",
-      backgroundColor: "#f0f0f0",
-      border: "1px solid #ccc",
-      borderRadius: "6px",
-      cursor: "pointer",
-      fontSize: "16px",
-      minWidth: "100px",
-      textAlign: "center"
-    }}
-  >
-    Practice set {idx + 1}
-  </button>
-))}
+              <button
+                key={idx}
+                onClick={() => {
+                  setSelectedLineIdx(idx);
+                  setUserWords([]);
+                  setCurrentWord("");
+                  setFeedback("");
+                  setMistakes(0);
+                }}
+                style={{
+                  padding: "12px 20px",
+                  backgroundColor: "#f0f0f0",
+                  border: "1px solid #ccc",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                  fontSize: "16px",
+                  minWidth: "100px",
+                  textAlign: "center"
+                }}
+              >
+                Practice set {idx + 1}
+              </button>
+            ))}
           </div>
           <button
             onClick={handleStartOver}
@@ -326,34 +349,34 @@ export default function App() {
 
           <h2>Latin:</h2>
           {practiceAll && sectionImages[sections[selectedSectionIdx].label] ? (
-  <img
-    src={sectionImages[sections[selectedSectionIdx].label]}
-    alt="Latin passage"
-    style={{
-      width: "100%",
-      margin: "0 auto",
-      display: "block",
-      maxWidth: "800px",
-      borderRadius: "10px",
-    }}
-  />
-) : (
-  <div
-    style={{
-      background: "#f9f9f9",
-      padding: "15px",
-      borderRadius: "8px",
-      fontSize: "20px",
-      whiteSpace: "pre-wrap",
-      wordWrap: "break-word",
-      marginBottom: "20px",
-      fontFamily: "serif",
-      textAlign: "center",
-      lineHeight: "1.8"
-    }}
-    dangerouslySetInnerHTML={{ __html: formatLatin() }}
-  />
-)}
+            <img
+              src={sectionImages[sections[selectedSectionIdx].label]}
+              alt="Latin passage"
+              style={{
+                width: "100%",
+                margin: "0 auto",
+                display: "block",
+                maxWidth: "800px",
+                borderRadius: "10px",
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                background: "#f9f9f9",
+                padding: "15px",
+                borderRadius: "8px",
+                fontSize: "20px",
+                whiteSpace: "pre-wrap",
+                wordWrap: "break-word",
+                marginBottom: "20px",
+                fontFamily: "serif",
+                textAlign: "center",
+                lineHeight: "1.8"
+              }}
+              dangerouslySetInnerHTML={{ __html: formatLatin() }}
+            />
+          )}
 
           <h2>Your Translation:</h2>
           <pre style={{
