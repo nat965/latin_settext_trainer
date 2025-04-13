@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { sections } from "./texts";
+import confetti from "canvas-confetti";
 
 const sectionImages = {
   "Lines 1–11": "/images/latin1.png",
@@ -41,6 +42,7 @@ export default function App() {
   const [userWords, setUserWords] = useState([]);
   const [feedback, setFeedback] = useState("");
   const [mistakes, setMistakes] = useState(0);
+  const [showFinishedPopup, setShowFinishedPopup] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -74,9 +76,20 @@ export default function App() {
         setUserWords((prev) => [...prev, targetWords[userWords.length]]);
         setCurrentWord("");
         setFeedback("Correct");
+        
+        if (userWords.length + 1 === targetWords.length) {
+          setShowFinishedPopup(true);
+          confetti({
+            particleCount: 150,
+            spread: 80,
+            origin: { y: 0.6 }
+          });
+        }
       } else {
-        setFeedback(`Try again — the correct word was "${targetWords[userWords.length]}"`);
-        setMistakes((prev) => prev + 1);
+        setFeedback("Try again.");
+        if (!feedback.startsWith("Try again")) {
+          setMistakes((prev) => prev + 1);
+        }
         setCurrentWord("");
       }
   
@@ -449,6 +462,45 @@ export default function App() {
           <p style={{ textAlign: "center", marginTop: "8px", fontSize: "14px" }}>
             {progress}% complete
           </p>
+
+          {showFinishedPopup && (
+            <div style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(0, 0, 0, 0.6)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 9999
+            }}>
+              <div style={{
+                background: "#fff",
+                padding: "30px 50px",
+                borderRadius: "10px",
+                textAlign: "center",
+                boxShadow: "0 0 20px rgba(0,0,0,0.3)"
+              }}>
+                <h2 style={{ marginBottom: "20px" }}>🎉 You're finished! Great work!</h2>
+                <button
+                  onClick={() => setShowFinishedPopup(false)}
+                  style={{
+                    padding: "10px 20px",
+                    backgroundColor: "#4caf50",
+                    color: "white",
+                    fontSize: "16px",
+                    border: "none",
+                    borderRadius: "5px",
+                    cursor: "pointer"
+                  }}
+                >
+                  OK
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
