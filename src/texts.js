@@ -1,52 +1,114 @@
 export const sections = [
     {
-      label: "Lines 1–11",
-      groups: [
-        {
-          latin: [
-            "Iuppiter huc specie mortali cumque parente",
-            "venit Atlantiades positis caducifer alis."
-          ],
-          english: "Jupiter came here in human form and, with his father, (came) the wand bearing descendant of Atlas, having set aside his wings."
-        },
-        {
-          latin: [
-            "mille domos adiere locum requiemque petentes,",
-            "mille domos clausere serae."
-          ],
-          english: "They approached a thousand houses, seeking a place to rest: bars shut a thousand houses."
-        },
-        {
-          latin: [
-            "tamen una recepit,",
-            "parva quidem stipulis et canna tecta palustri,"
-          ],
-          english: "However, one received (them), a small (one), it is true, covered with stalks and marshy reeds,"
-        },
-        {
-          latin: [
-            "sed pia Baucis anus pariliquae aetate Philemon",
-            "illa sunt annis iuncti iuvenalibus, illa",
-            "consenuere casa paupertatemque fatendo",
-            "effecere levem nec iniqua mente ferendo."
-          ],
-          english: "but the dutiful old woman Baucis, and Philemon of similar age, were united in their young years in that cottage, grew old in that cottage, and, by acknowledging their poverty, and bearing it with a not unfair mind, made it unimportant."
-        },
-        {
-          latin: [
-            "nec refert, dominos illic famulosne requiras:",
-            "tota domus duo sunt, idem parentque iubentque."
-          ],
-          english: "And it does not matter whether you look for the masters or servants there: the two are the whole house, the same (people) obey and order."
-        }
-      ],
-      fullEnglish: [
-        "Jupiter came here in human form and, with his father, (came) the wand-bearing descendant of Atlas, having set aside his wings.",
-        "They approached a thousand houses, seeking a place to rest: bars shut a thousand houses.",
-        "However, one received (them), a small (one), it is true, covered with stalks and marshy reeds, but the dutiful old woman Baucis, and Philemon of similar age, were united in their young years in that cottage, grew old in that cottage, and, by acknowledging their poverty, and bearing it with a not unfair mind, made it unimportant.",
-        "And it does not matter whether you look for the masters or servants there: the two are the whole house, the same (people) obey and order."
-      ]
-    },
+        label: "Lines 1–11",
+        groups: [
+          {
+            latin: [
+              "Iuppiter huc specie mortali cumque parente",
+              "venit Atlantiades positis caducifer alis."
+            ],
+            english: "Jupiter came here in human form and, with his father, (came) the wand bearing descendant of Atlas, having set aside his wings."
+          },
+          {
+            latin: [
+              "mille domos adiere locum requiemque petentes,",
+              "mille domos clausere serae."
+            ],
+            english: "They approached a thousand houses, seeking a place to rest: bars shut a thousand houses."
+          },
+          {
+            latin: [
+              "tamen una recepit,",
+              "parva quidem stipulis et canna tecta palustri,"
+            ],
+            english: "However, one received (them), a small (one), it is true, covered with stalks and marshy reeds,"
+          },
+          {
+            latin: [
+              "sed pia Baucis anus pariliquae aetate Philemon",
+              "illa sunt annis iuncti iuvenalibus, illa",
+              "consenuere casa paupertatemque fatendo",
+              "effecere levem nec iniqua mente ferendo."
+            ],
+            english: "but the dutiful old woman Baucis, and Philemon of similar age, were united in their young years in that cottage, grew old in that cottage, and, by acknowledging their poverty, and bearing it with a not unfair mind, made it unimportant."
+          },
+          {
+            latin: [
+              "nec refert, dominos illic famulosne requiras:",
+              "tota domus duo sunt, idem parentque iubentque."
+            ],
+            english: "And it does not matter whether you look for the masters or servants there: the two are the whole house, the same (people) obey and order."
+          }
+        ],
+        fullEnglish: [
+          "Jupiter came here in human form and, with his father, (came) the wand-bearing descendant of Atlas, having set aside his wings.",
+          "They approached a thousand houses, seeking a place to rest: bars shut a thousand houses.",
+          "However, one received (them), a small (one), it is true, covered with stalks and marshy reeds, but the dutiful old woman Baucis, and Philemon of similar age, were united in their young years in that cottage, grew old in that cottage, and, by acknowledging their poverty, and bearing it with a not unfair mind, made it unimportant.",
+          "And it does not matter whether you look for the masters or servants there: the two are the whole house, the same (people) obey and order."
+        ],
+        styleNotes: [
+            {
+              quote: "positis caducifer alis",
+              technique: "Enclosing order and juxtaposition highlight Mercury’s two distinctive features — his wand and wings."
+            },
+            {
+              quote: "mille domos...mille domos",
+              technique: "Anaphora emphasizes the repeated rejections and the uniqueness of Baucis and Philemon."
+            },
+            {
+              quote: "clausae serae. tamen",
+              technique: "Caesura stresses the rejection the gods faced when doors were shut against them."
+            },
+            {
+              quote: "adiere...clausere",
+              technique: "Homoioteleuton and syncopated perfect tense verbs make the action vivid and fast-paced."
+            },
+            {
+              quote: "tamen una recepit",
+              technique: "Very short clause draws attention to the single act of hospitality."
+            },
+            {
+              quote: "canna tecta palustri",
+              technique: "Enclosing word order shows the house literally covered in reeds, emphasizing poverty."
+            },
+            {
+              quote: "pia",
+              technique: "Emphatic position stresses Baucis' dutiful and pious nature."
+            },
+            {
+              quote: "annis iuncti iuvenalibus",
+              technique: "Enclosing word order emphasizes the lifelong union of the couple."
+            },
+            {
+              quote: "sed pia Baucis anus pariliquae aetate Philemon",
+              technique: "Alliteration of 'p' sounds and dactylic rhythm highlight the couple’s piety and equality."
+            },
+            {
+              quote: "consenuere casa paupertatemque fatendo",
+              technique: "Unusually short line (four words) conveys the depth of meaning about acceptance of poverty."
+            },
+            {
+              quote: "nec iniqua",
+              technique: "Litotes stresses their fairness and positive attitude."
+            },
+            {
+              quote: "fatendo...ferendo",
+              technique: "Homoioteleuton emphasizes how they endure and make light of their poverty."
+            },
+            {
+              quote: "requiras",
+              technique: "Use of second person draws the reader in and stresses the harmony of the household."
+            },
+            {
+              quote: "sunt",
+              technique: "Historic present tense adds vividness to the description."
+            },
+            {
+              quote: "parentque iubentque",
+              technique: "Epic language style gives grandeur to an otherwise humorous and humble story."
+            }
+          ]
+      },
     {
         label: "Lines 11–25",
         groups: [
@@ -674,5 +736,292 @@ export const sections = [
       "The body was granted to the mother."
     ]
   },
+  {
+    label: "Avunculus Meus Lines 1–12",
+    groups: [
+      {
+        latin: [
+          "ante lucem ibat ad Vespasianum imperatorem (nam ille quoque noctibus utebatur), deinde ad officium sibi delegatum."
+        ],
+        english: "Before dawn, he used to go to the emperor Vespasian (for he also used the nights), then to the duty assigned to him."
+      },
+      {
+        latin: [
+          "reversus domum reliquum tempus studiis dabat."
+        ],
+        english: "Having returned home, he would allot the rest of the time to his studies."
+      },
+      {
+        latin: [
+          "saepe post cibum (qui veterum more interdiu levis et facilis erat) aestate, si quid otii erat, iacebat in sole, liber legebatur, adnotabat excerpebatque."
+        ],
+        english: "Often after food (which, after the custom of his forefathers during the day was light and easy on the stomach), in summertime, if there was any free time, he would lie in the sun, a book would be read, he would make notes and take extracts (from it)."
+      },
+      {
+        latin: [
+          "nihil enim legit quod non excerperet; dicere etiam solebat nullum librum esse tam malum ut non aliqua parte prodesset."
+        ],
+        english: "For he read nothing from which he would not take extracts; indeed, he used to say that no book was so bad that it was not useful in some part."
+      },
+      {
+        latin: [
+          "post solem plerumque aqua frigida lavabatur, deinde gustabat dormiebatque minimum;"
+        ],
+        english: "After sunbathing he generally bathed in cold water, then had a snack, and slept for a very short time."
+      },
+      {
+        latin: [
+          "mox quasi alio die studebat in cenae tempus."
+        ],
+        english: "Soon afterwards, as if it were on another day, he would study till dinnertime."
+      },
+      {
+        latin: [
+          "super cenam liber legebatur adnotabatur, et quidem cursim."
+        ],
+        english: "Over dinner, a book would be read and notes taken, but hastily."
+      }
+    ],
+    fullEnglish: [
+      "Before dawn, he used to go to the emperor Vespasian (for he also used the nights), then to the duty assigned to him. Having returned home, he would allot the rest of the time to his studies. Often after food (which, after the custom of his forefathers during the day was light and easy on the stomach), in summertime, if there was any free time, he would lie in the sun, a book would be read, he would make notes and take extracts (from it). For he read nothing from which he would not take extracts; indeed, he used to say that no book was so bad that it was not useful in some part. After sunbathing he generally bathed in cold water, then had a snack, and slept for a very short time. Soon afterwards, as if it were on another day, he would study till dinnertime. Over dinner, a book would be read and notes taken, but hastily."
+    ]
+  },
+  {
+    label: "Avunculus Meus Lines 13–23",
+    groups: [
+      {
+        latin: [
+          "haec inter medios labores urbisque fremitum."
+        ],
+        english: "These things took place during the middle of the toils and noise of the city."
+      },
+      {
+        latin: [
+          "in secessu solum balinei tempus studiis eximebatur",
+          "(cum dico 'balinei', de interioribus loquor;"
+        ],
+        english: "In his (country) retreat, only bath time was taken away from studies (when I say 'bath', I am talking about the inner (rooms);"
+      },
+      {
+        latin: [
+          "nam dum destringitur tergiturque, audiebat aliquid aut dictabat)."
+        ],
+        english: "for while he was being scraped and wiped down, he would listen to something or dictate)."
+      },
+      {
+        latin: [
+          "in itinere quasi solutus ceteris curis, huic uni vacabat:"
+        ],
+        english: "On a journey, as if released from all other anxieties, he had time for this alone:"
+      },
+      {
+        latin: [
+          "ad latus notarius cum libro et pugillaribus,"
+        ],
+        english: "at his side (there would be) a secretary with a book and writing tablet,"
+      },
+      {
+        latin: [
+          "cuius manus hieme manicis muniebantur,"
+        ],
+        english: "whose hands were protected with mittens in winter,"
+      },
+      {
+        latin: [
+          "ut ne caeli quidem asperitas ullum studii tempus eriperet;"
+        ],
+        english: "so that not even the harshness of the weather might take away any study time;"
+      },
+      {
+        latin: [
+          "qua ex causa Romae quoque sella vehebatur."
+        ],
+        english: "for this reason he rode in a sedan chair at Rome also."
+      }
+    ],
+    fullEnglish: [
+      "These things took place during the middle of the toils and noise of the city.",
+      "In his (country) retreat, only bath time was taken away from studies (when I say 'bath', I am talking about the inner (rooms);",
+      "for while he was being scraped and wiped down, he would listen to something or dictate).",
+      "On a journey, as if released from all other anxieties, he had time for this alone:",
+      "at his side (there would be) a secretary with a book and writing tablet,",
+      "whose hands were protected with mittens in winter,",
+      "so that not even the harshness of the weather might take away any study time;",
+      "for this reason he rode in a sedan chair at Rome also."
+    ]
+  },
+  {
+    label: "Catullus 50 Lines 1–10",
+    groups: [
+      {
+        latin: [
+          "hesterno, Licini, die otiosi"
+        ],
+        english: "Yesterday, Licinius, being at leisure,"
+      },
+      {
+        latin: [
+          "multum lusimus in meis tabellis,"
+        ],
+        english: "we played a lot on my tablets,"
+      },
+      {
+        latin: [
+          "ut convenerat esse delicatos;"
+        ],
+        english: "as it had suited us to be frivolous;"
+      },
+      {
+        latin: [
+          "scribens versiculos uterque nostrum"
+        ],
+        english: "each of us writing trivial verses,"
+      },
+      {
+        latin: [
+          "ludebat numero modo hoc modo illoc,"
+        ],
+        english: "played now in this metre, now in that,"
+      },
+      {
+        latin: [
+          "reddens mutua per iocum atque vinum."
+        ],
+        english: "exchanging lines between us amid jokes and wine."
+      },
+      {
+        latin: [
+          "atque illinc abii tuo lepore"
+        ],
+        english: "And indeed, I went away from there, fired by your charm"
+      },
+      {
+        latin: [
+          "incensus, Licini, facetisque,"
+        ],
+        english: "and witticisms, Licinius,"
+      },
+      {
+        latin: [
+          "ut nec me miserum cibus iuvaret"
+        ],
+        english: "so that neither did any food help me in my wretchedness,"
+      },
+      {
+        latin: [
+          "nec somnus tegeret quiete ocellos..."
+        ],
+        english: "nor did sleep cover my dear eyes with rest..."
+      }
+    ],
+    fullEnglish: [
+      "Yesterday, Licinius, being at leisure,",
+      "we played a lot on my tablets,",
+      "as it had suited us to be frivolous;",
+      "each of us writing trivial verses,",
+      "played now in this metre, now in that,",
+      "exchanging lines between us amid jokes and wine.",
+      "And indeed, I went away from there, fired by your charm",
+      "and witticisms, Licinius,",
+      "so that neither did any food help me in my wretchedness,",
+      "nor did sleep cover my dear eyes with rest..."
+    ]
+  },
+  {
+    label: "Catullus 50 Lines 11–21",
+    groups: [
+      {
+        latin: [
+          "sed toto indomitus furore lecto versarer, cupiens videre lucem,",
+          "ut tecum loquerer simulque ut essem."
+        ],
+        english: "but, uncontrollable because of my frenzy, I tossed about over the whole bed, desiring to see the daylight, so that I could talk to you and be together with you."
+      },
+      {
+        latin: [
+          "at defessa labore membra postquam semimortua lectulo iacebant,",
+          "hoc, iucunde, tibi poema feci,"
+        ],
+        english: "But, when my limbs, tired by suffering, were lying half-dead in my little bed, I composed this poem for you, dear chap."
+      },
+      {
+        latin: [
+          "ex quo perspiceres meum dolorem."
+        ],
+        english: "from which you might perceive my pain."
+      },
+      {
+        latin: [
+          "nunc audax cave sis, precesque nostras, oramus, cave despuas, ocelle,"
+        ],
+        english: "Now take care that you are not proud, and, light of my life, we beg, do not despise our prayers."
+      },
+      {
+        latin: [
+          "ne poenas Nemesis reposcat a te. est vemens dea. laedere hanc caveto."
+        ],
+        english: "lest Nemesis demand punishment from you. She is a violent goddess. Beware of offending her."
+      }
+    ],
+    fullEnglish: [
+      "but, uncontrollable because of my frenzy, I tossed about over the whole bed, desiring to see the daylight, so that I could talk to you and be together with you.",
+      "But, when my limbs, tired by suffering, were lying half-dead in my little bed, I composed this poem for you, dear chap.",
+      "from which you might perceive my pain.",
+      "Now take care that you are not proud, and, light of my life, we beg, do not despise our prayers.",
+      "lest Nemesis demand punishment from you. She is a violent goddess. Beware of offending her."
+    ]
+  },
+  {
+    label: "Catullus 13 Lines 1–14",
+    groups: [
+      {
+        latin: [
+          "cenabis bene, mi Fabulle, apud me",
+          "paucis, si tibi di favent, diebus,",
+          "si tecum attuleris bonam atque magnam",
+          "cenam, non sine candida puella"
+        ],
+        english: "You will dine well at my house, my Fabullus, within a few days, if the gods are favourable to you, if you bring a good and substantial meal with you, as well as a pretty girl,"
+      },
+      {
+        latin: [
+          "et vino et sale et omnibus cachinnis.",
+          "haec si, inquam, attuleris, venuste noster,",
+          "cenabis bene; nam tui Catulli",
+          "plenus sacculus est aranearum."
+        ],
+        english: "wine, wit and all kinds of laughter. If you bring these, I declare, my charming fellow, you will dine well; for the money bag of your Catullus is full of cobwebs."
+      },
+      {
+        latin: [
+          "sed contra accipies meros amores",
+          "seu quid suavius elegantiusve est:"
+        ],
+        english: "But in return, you will receive true love, or whatever is more pleasant or elegant:"
+      },
+      {
+        latin: [
+          "nam unguentum dabo, quod meae puellae",
+          "donarunt Veneres Cupidinesque,"
+        ],
+        english: "for I shall give you perfume which all the goddesses of love and the gods of desire have given to my girlfriend,"
+      },
+      {
+        latin: [
+          "quod tu cum olfacies, deos rogabis,",
+          "totum ut te faciant, Fabulle, nasum."
+        ],
+        english: "and when you smell this, you will ask the gods, Fabullus, to make you all nose."
+      }
+    ],
+    fullEnglish: [
+      "You will dine well at my house, my Fabullus, within a few days, if the gods are favourable to you, if you bring a good and substantial meal with you, as well as a pretty girl, wine, wit and all kinds of laughter.",
+      "If you bring these, I declare, my charming fellow, you will dine well; for the money bag of your Catullus is full of cobwebs.",
+      "But in return, you will receive true love, or whatever is more pleasant or elegant:",
+      "for I shall give you perfume which all the goddesses of love and the gods of desire have given to my girlfriend,",
+      "and when you smell this, you will ask the gods, Fabullus, to make you all nose."
+    ]
+  }
+  
 ];
   
