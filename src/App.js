@@ -47,6 +47,7 @@ export default function App() {
   const [mistakes, setMistakes] = useState(0);
   const [showFinishedPopup, setShowFinishedPopup] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
+  const [mistakePositions, setMistakePositions] = useState([]);
 
   const inputRef = useRef(null);
 
@@ -91,6 +92,9 @@ export default function App() {
         }
       } else {
         setFeedback("Try again.");
+        if (!mistakePositions.includes(userWords.length)) {
+          setMistakePositions((prev) => [...prev, userWords.length]);
+        }
         if (!feedback.startsWith("Try again")) {
           setMistakes((prev) => prev + 1);
         }
@@ -125,6 +129,12 @@ export default function App() {
     setUserWords([]);
     setFeedback("");
     setMistakes(0);
+    setMistakePositions([]);
+  };
+  
+  const handleResetMistakes = () => {
+    setMistakes(0);
+    setMistakePositions([]);
   };
 
   const progress = (() => {
@@ -330,40 +340,73 @@ export default function App() {
       {(selectedLineIdx !== null || practiceAll) && (
         <div>
           <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
-            <button
-              onClick={handleStartOver}
-              style={{
-                padding: "10px 16px",
-                backgroundColor: "#ffe0e0",
-                border: "1px solid #ffaaaa",
-                borderRadius: "6px",
-                cursor: "pointer",
-                fontSize: "14px"
-              }}
-            >
-              Start Over
-            </button>
-
-            <button
-              onClick={() => {
-                setSelectedLineIdx(null);
-                setPracticeAll(false);
+          <button
+            onClick={handleStartOver}
+            style={{
+              padding: "10px 16px",
+              backgroundColor: "#ffe0e0",
+              border: "1px solid #ffaaaa",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontSize: "14px"
+            }}
+          >
+            Start Over
+          </button>
+ 
+          <button
+            onClick={() => {
+              setSelectedLineIdx(null);
+              setPracticeAll(false);
+              setUserWords([]);
+              setCurrentWord("");
+              setFeedback("");
+              setMistakes(0);
+            }}
+            style={{
+              padding: "10px 16px",
+              backgroundColor: "#e0f7fa",
+              border: "1px solid #00bcd4",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontSize: "14px"
+            }}
+          >
+            Choose Another Line
+          </button>
+          
+          <button
+            onClick={handleResetMistakes}
+            style={{
+              padding: "10px 16px",
+              backgroundColor: "#e8d0ff",
+              border: "1px solid #c08be9",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontSize: "14px"
+            }}
+          >
+            Reset Mistakes
+          </button>
+          <button
+            onClick={() => {
+              if (selectedLineIdx !== null || practiceAll) {
                 setUserWords([]);
                 setCurrentWord("");
                 setFeedback("");
-                setMistakes(0);
-              }}
-              style={{
-                padding: "10px 16px",
-                backgroundColor: "#e0f7fa",
-                border: "1px solid #00bcd4",
-                borderRadius: "6px",
-                cursor: "pointer",
-                fontSize: "14px"
-              }}
-            >
-              Choose Another Line
-            </button>
+              }
+            }}
+            style={{
+              padding: "10px 16px",
+              backgroundColor: "#ffe8cc",
+              border: "1px solid #ffb74d",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontSize: "14px"
+            }}
+          >
+            Retry This Line
+          </button>
           </div>
 
           <div style={{ display: "flex", gap: "20px", alignItems: "start" }}>
@@ -402,7 +445,7 @@ export default function App() {
 
             <div style={{ flex: 1 }}>
               <h2>Your Translation:</h2>
-              <pre style={{
+              <div style={{
                 background: "#f9f9f9",
                 padding: "15px",
                 minHeight: "100px",
@@ -412,8 +455,21 @@ export default function App() {
                 fontSize: "16px",
                 fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
               }}>
-                {userWords.join(" ")}
-              </pre>
+                {userWords.map((word, idx) => (
+                  <span
+                    key={idx}
+                    style={{
+                      backgroundColor: mistakePositions.includes(idx) ? "#ffcccc" : "transparent",
+                      padding: "2px 4px",
+                      borderRadius: "4px",
+                      marginRight: "2px",
+                      display: "inline-block"
+                    }}
+                  >
+                    {word}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
