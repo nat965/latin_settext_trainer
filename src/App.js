@@ -109,6 +109,20 @@ export default function App() {
 
   const handleHint = () => {
     if (selectedSectionIdx === null) return;
+ 
+    const targetText = practiceAll
+      ? sections[selectedSectionIdx].fullEnglish.join(" ")
+      : sections[selectedSectionIdx].fullEnglish[selectedLineIdx];
+ 
+    const targetWords = targetText.trim().split(/\s+/);
+    if (userWords.length < targetWords.length) {
+      const firstLetter = targetWords[userWords.length][0];
+      setFeedback(`Hint: starts with "${firstLetter}"`);
+    }
+  };
+
+  const handleRevealWord = () => {
+    if (selectedSectionIdx === null) return;
 
     const targetText = practiceAll
       ? sections[selectedSectionIdx].fullEnglish.join(" ")
@@ -116,8 +130,23 @@ export default function App() {
 
     const targetWords = targetText.trim().split(/\s+/);
     if (userWords.length < targetWords.length) {
-      const firstLetter = targetWords[userWords.length][0];
-      setFeedback(`Hint: starts with "${firstLetter}"`);
+      const nextWord = targetWords[userWords.length];
+      setUserWords(prev => [...prev, nextWord]);
+      setCurrentWord("");
+      setFeedback("Word revealed.");
+    }
+
+    if (userWords.length + 1 === targetWords.length) {
+      setShowFinishedPopup(true);
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+    }
+
+    if (inputRef.current) {
+      inputRef.current.focus();
     }
   };
 
@@ -500,6 +529,17 @@ export default function App() {
               fontSize: "15px"
             }}>
               Hint
+            </button>
+            <button onClick={handleRevealWord} style={{
+              marginRight: "10px",
+              padding: "10px 16px",
+              backgroundColor: "#fce4ec",
+              border: "1px solid #f06292",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontSize: "15px"
+            }}>
+              Reveal Word
             </button>
             <span style={{ fontSize: "14px", color: "#555" }}>
               Mistakes: {mistakes}
