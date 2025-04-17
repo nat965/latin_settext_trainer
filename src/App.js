@@ -72,8 +72,9 @@ export default function App() {
       targetText = sections[selectedSectionIdx].groups[selectedLineIdx].english;
     }
   
+    const targetWords = targetText.trim().split(/\s+/);
+  
     if (value.endsWith(" ")) {
-      const targetWords = targetText.trim().split(/\s+/);
       const typed = normalize(value.trim());
       const correctWord = normalize(targetWords[userWords.length] || "");
   
@@ -81,7 +82,7 @@ export default function App() {
         setUserWords((prev) => [...prev, targetWords[userWords.length]]);
         setCurrentWord("");
         setFeedback("Correct");
-        
+  
         if (userWords.length + 1 === targetWords.length) {
           setShowFinishedPopup(true);
           confetti({
@@ -98,12 +99,11 @@ export default function App() {
         if (!feedback.startsWith("Try again")) {
           setMistakes((prev) => prev + 1);
         }
-        setCurrentWord("");
       }
+    }
   
-      if (inputRef.current) {
-        inputRef.current.focus();
-      }
+    if (inputRef.current) {
+      inputRef.current.focus();
     }
   };
 
@@ -436,6 +436,54 @@ export default function App() {
           >
             Retry This Line
           </button>
+          {selectedLineIdx !== null && !practiceAll && (
+            <>
+              <button
+                onClick={() => {
+                  const nextIdx = selectedLineIdx + 1;
+                  if (nextIdx < sections[selectedSectionIdx].groups.length) {
+                    setSelectedLineIdx(nextIdx);
+                    setUserWords([]);
+                    setCurrentWord("");
+                    setFeedback("");
+                    setMistakes(0);
+                    setMistakePositions([]);
+                  }
+                }}
+                style={{
+                  padding: "10px 16px",
+                  backgroundColor: "#e0ffe0",
+                  border: "1px solid #66bb6a",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                  fontSize: "14px"
+                }}
+              >
+                Next Practice Set
+              </button>
+              <button
+                onClick={() => {
+                  const randomIdx = Math.floor(Math.random() * sections[selectedSectionIdx].groups.length);
+                  setSelectedLineIdx(randomIdx);
+                  setUserWords([]);
+                  setCurrentWord("");
+                  setFeedback("");
+                  setMistakes(0);
+                  setMistakePositions([]);
+                }}
+                style={{
+                  padding: "10px 16px",
+                  backgroundColor: "#e0f7ff",
+                  border: "1px solid #4fc3f7",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                  fontSize: "14px"
+                }}
+              >
+                Random Practice Set
+              </button>
+            </>
+          )}
           </div>
 
           <div style={{ display: "flex", gap: "20px", alignItems: "start" }}>
